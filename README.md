@@ -1,21 +1,15 @@
 # RBAC-MERN
-Features
-
+Features:
 ✅ User Registration (hashed passwords using bcrypt)
-
 ✅ User Login with JWT Token generation
-
 ✅ Role-Based Authorization (Admin, Manager, User)
-
 ✅ Protected Routes using Middleware
-
 ✅ MongoDB with Mongoose
-
 ✅ Clean MVC-style structure
-
 ✅ Environment variable configuration
 
-🏗️ Project Structure
+Project Structure:
+
 ├── index.js                 # Entry point
 ├── config/
 │   └── dbConnect.js         # MongoDB connection
@@ -29,6 +23,7 @@ Features
 │   ├── authRoutes.js        # /api/auth routes
 │   └── userRoutes.js        # Protected routes
 └── .env                     # Environment variables
+
 ⚙️ Technologies Used
 
 Node.js
