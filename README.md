@@ -1,191 +1,67 @@
-# RBAC-MERN
-Features:
-✅ User Registration (hashed passwords using bcrypt)
-✅ User Login with JWT Token generation
-✅ Role-Based Authorization (Admin, Manager, User)
-✅ Protected Routes using Middleware
-✅ MongoDB with Mongoose
-✅ Clean MVC-style structure
-✅ Environment variable configuration
+Node.js Role-Based Authentication API
 
-Project Structure:
+A simple Node.js + Express + MongoDB backend implementing JWT authentication and Role-Based Access Control (RBAC).
 
-├── index.js                 # Entry point
-├── config/
-│   └── dbConnect.js         # MongoDB connection
-├── models/
-│   └── userModel.js         # User schema
-├── controllers/
-│   └── authController.js    # Register & Login logic
-├── middleware/
-│   └── authMiddleware.js    # JWT verification & Role authorization
-├── routes/
-│   ├── authRoutes.js        # /api/auth routes
-│   └── userRoutes.js        # Protected routes
-└── .env                     # Environment variables
+🚀 Features:
 
-⚙️ Technologies Used
+User Registration & Login
 
-Node.js
+Password Hashing (bcrypt)
 
-Express.js
+JWT Authentication
 
-MongoDB
+Role-Based Authorization (admin, manager, user)
 
-Mongoose
+Protected Routes with Middleware
 
-JSON Web Token (JWT)
-
-bcryptjs
-
-dotenv
-
-🔧 Installation & Setup
-1️⃣ Clone the repository
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-2️⃣ Install dependencies
+📁 Project Structure:
+├── index.js
+├── config/dbConnect.js
+├── models/userModel.js
+├── controllers/authController.js
+├── middleware/authMiddleware.js
+├── routes/authRoutes.js
+├── routes/userRoutes.js
+└── .env
+⚙️ Setup
+1️⃣ Install dependencies
 npm install
-3️⃣ Create a .env file
+2️⃣ Create .env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=your_mongo_connection
 JWT_SECRET=your_secret_key
-4️⃣ Start the server
+3️⃣ Start server
 npm start
 
 Server runs at:
 
 http://localhost:5000
-🔐 Authentication Flow
-📝 Register
+🔐 API Endpoints
+Auth Routes
 
 POST /api/auth/register
 
-{
-  "username": "john",
-  "password": "123456",
-  "role": "user"
-}
-🔑 Login
-
 POST /api/auth/login
 
-{
-  "username": "john",
-  "password": "123456"
-}
-
-Response:
-
-{
-  "token": "your_jwt_token"
-}
-🛡️ Protected Routes
-
-All protected routes require:
-
+Protected Routes (Require JWT in header)
 Authorization: Bearer <token>
-👑 Admin Route
 
-GET /api/users/admin
+GET /api/users/admin → Admin only
 
-Accessible only by:
+GET /api/users/manager → Admin & Manager
 
-admin
+GET /api/users/user → All roles
 
-📊 Manager Route
+🛡️ How It Works
 
-GET /api/users/manager
+User registers with hashed password
 
-Accessible by:
+User logs in and receives JWT
 
-admin
+Token is verified via middleware
 
-manager
+Access is granted based on user role
 
-👤 User Route
+📌 Tech Stack
 
-GET /api/users/user
-
-Accessible by:
-
-admin
-
-manager
-
-user
-
-🔒 Middleware Explanation
-verifyToken
-
-Extracts JWT from Authorization header
-
-Verifies token using secret key
-
-Attaches decoded user info to request
-
-authorizeRoles
-
-Checks if user role matches allowed roles
-
-Returns 403 if unauthorized
-
-🗄️ Database Schema
-User Model
-{
-  username: String,
-  password: String,
-  role: "admin" | "manager" | "user"
-}
-
-Includes automatic:
-
-createdAt
-
-updatedAt
-
-🧠 How Role-Based Access Works
-
-User logs in
-
-Server generates JWT containing:
-
-User ID
-
-User Role
-
-Client sends token in headers
-
-Middleware:
-
-Verifies token
-
-Checks role
-
-Grants or denies access
-
-📌 Security Best Practices Implemented
-
-Password hashing using bcrypt
-
-JWT stored securely (recommended: HttpOnly cookies in production)
-
-Environment variables for sensitive data
-
-Role validation before route access
-
-🛠️ Future Improvements
-
-Refresh Tokens
-
-Email verification
-
-Password reset feature
-
-Rate limiting
-
-Input validation (Joi or express-validator)
-
-Docker support
-
-Unit testing
+Node.js • Express • MongoDB • Mongoose • JWT • bcrypt • dotenv
