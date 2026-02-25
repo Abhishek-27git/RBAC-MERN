@@ -1,20 +1,22 @@
-Node.js Role-Based Authentication API
+# 🔐 Node.js Role-Based Authentication API
 
-A simple Node.js + Express + MongoDB backend implementing JWT authentication and Role-Based Access Control (RBAC).
+A simple **Node.js + Express + MongoDB** backend implementing **JWT authentication** and **Role-Based Access Control (RBAC)**.
 
-🚀 Features:
+---
 
-User Registration & Login
+## 🚀 Features
 
-Password Hashing (bcrypt)
+* User Registration & Login
+* Password Hashing (bcrypt)
+* JWT Authentication
+* Role-Based Authorization (admin, manager, user)
+* Protected Routes with Middleware
 
-JWT Authentication
+---
 
-Role-Based Authorization (admin, manager, user)
+## 📁 Project Structure
 
-Protected Routes with Middleware
-
-📁 Project Structure:
+```
 ├── index.js
 ├── config/dbConnect.js
 ├── models/userModel.js
@@ -23,45 +25,70 @@ Protected Routes with Middleware
 ├── routes/authRoutes.js
 ├── routes/userRoutes.js
 └── .env
-⚙️ Setup
-1️⃣ Install dependencies
+```
+
+---
+
+## ⚙️ Setup
+
+### 1️⃣ Install dependencies
+
+```bash
 npm install
-2️⃣ Create .env
+```
+
+### 2️⃣ Create `.env`
+
+```env
 PORT=5000
 MONGO_URI=your_mongo_connection
 JWT_SECRET=your_secret_key
-3️⃣ Start server
+```
+
+### 3️⃣ Start server
+
+```bash
 npm start
+```
 
 Server runs at:
 
+```
 http://localhost:5000
-🔐 API Endpoints
-Auth Routes
+```
 
-POST /api/auth/register
+---
 
-POST /api/auth/login
+## 🔐 API Endpoints
 
-Protected Routes (Require JWT in header)
+### Auth Routes
+
+* **POST** `/api/auth/register`
+* **POST** `/api/auth/login`
+
+### Protected Routes
+
+(Require JWT in header)
+
+```
 Authorization: Bearer <token>
+```
 
-GET /api/users/admin → Admin only
+* **GET** `/api/users/admin` → Admin only
+* **GET** `/api/users/manager` → Admin & Manager
+* **GET** `/api/users/user` → All roles
 
-GET /api/users/manager → Admin & Manager
+---
 
-GET /api/users/user → All roles
+## 🛡️ How It Works
 
-🛡️ How It Works
+1. User registers with hashed password
+2. User logs in and receives JWT
+3. Token is verified via middleware
+4. Access is granted based on user role
 
-User registers with hashed password
+---
 
-User logs in and receives JWT
-
-Token is verified via middleware
-
-Access is granted based on user role
-
-📌 Tech Stack
+## 📌 Tech Stack
 
 Node.js • Express • MongoDB • Mongoose • JWT • bcrypt • dotenv
